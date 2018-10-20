@@ -9,8 +9,7 @@ public class Rompecabezas {
     int filas;
     int columnas;
 
-    int tablero[][];
-
+    Tablero tablero;
     Ficha[] fichas;
 
     public Rompecabezas(String data) {
@@ -25,7 +24,7 @@ public class Rompecabezas {
 
         filas = Integer.parseInt(values[0]);
         columnas = Integer.parseInt(values[1]);
-        tablero = new int[filas][columnas];
+        tablero = new Tablero(filas, columnas);
 
         fichas = new Ficha[Integer.parseInt(values[2])];
 
