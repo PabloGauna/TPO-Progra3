@@ -35,7 +35,8 @@ public class Rompecabezas {
     }
 
     public void Resolver(){
-        while (tablero.AgregarFicha( (Ficha) fichasDisponibles.elegir(), 0, 0)) {
+        while (tablero.SePuedeAgregar( (Ficha) fichasDisponibles.elegir(), 0, 0)) {
+            tablero.AgregarFicha((Ficha) fichasDisponibles.elegir(), 0, 0);
             fichasDisponibles.sacar(fichasDisponibles.elegir());
         }
 

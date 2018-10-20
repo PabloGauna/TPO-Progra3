@@ -7,7 +7,7 @@ import TDA.ConjuntoTDA;
 public class Tablero {
     int alto;
     int ancho;
-    byte[][] celdas;
+    boolean[][] celdas;
 
     ConjuntoTDA<Ficha> fichasAgregadas;
 
@@ -15,36 +15,36 @@ public class Tablero {
         this.alto = alto;
         this.ancho = ancho;
 
-        celdas = new byte[alto][ancho];
+        celdas = new boolean[alto][ancho];
         fichasAgregadas = new Implementaciones.Conjunto<Ficha>();
         fichasAgregadas.inicializarConjunto();
     }
 
-    // Devuelve true si se pudo agregar la ficha, y false si no se pudo agregar
-    public Boolean AgregarFicha(Ficha ficha, int posicionAlto, int posicionAncho){
+    public boolean SePuedeAgregar(Ficha ficha, int posicionAlto, int posicionAncho){
         if (posicionAlto + ficha.alto > this.alto)
             return false;
         if (posicionAncho + ficha.ancho > this.ancho)
             return false;
 
-        Boolean canAddFicha = true;
-        byte[][] _nuevasCeldas = celdas.clone();
+        boolean canAddFicha = true;
 
         int i = 0, j = 0;
         while (canAddFicha && i < ficha.alto) {
-            _nuevasCeldas[i + posicionAlto][j + posicionAncho] += ficha.forma[i][j] ? 1 : 0;
-            canAddFicha = _nuevasCeldas[i][j] <= 1;
+            canAddFicha = !( celdas[posicionAlto + i][posicionAncho + j] && ficha.forma[i][j] );
 
             j++;
             i = (i * ficha.ancho + j) / ficha.ancho;
             j %= ficha.ancho;
         }
 
-        if (canAddFicha) {
-            fichasAgregadas.agregar(ficha);
-            celdas = _nuevasCeldas;
-        }
-
         return canAddFicha;
+    }
+
+    public void AgregarFicha(Ficha ficha, int posicionAlto, int posicionAncho){
+        for (int i=0 ; i < ficha.alto; i++){
+            for (int j=0; j < ficha.ancho; j++){
+                celdas[posicionAlto + i][posicionAncho + j] |= ficha.forma[i][j];
+            }
+        }
     }
 }

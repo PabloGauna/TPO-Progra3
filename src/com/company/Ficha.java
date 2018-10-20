@@ -3,7 +3,7 @@ package com.company;
 public class Ficha {
     public int alto;
     public int ancho;
-    public Boolean forma[][];
+    public boolean forma[][];
     byte rotacion;
 
     public Ficha(String data) {
@@ -21,7 +21,7 @@ public class Ficha {
 
         alto = Integer.parseInt(values[0]);
         ancho = Integer.parseInt(values[1]);
-        forma = new Boolean[alto][ancho];
+        forma = new boolean[alto][ancho];
 
         for (int i = 0; i < alto; i++) {
             for (int j = 0; j < ancho; j++) {
@@ -33,7 +33,7 @@ public class Ficha {
     public void RotarDerecha(){
         int _nuevoAlto = ancho;
         int _nuevoAncho = alto;
-        Boolean[][] _nuevaForma = new Boolean[_nuevoAlto][_nuevoAncho];
+        boolean[][] _nuevaForma = new boolean[_nuevoAlto][_nuevoAncho];
 
         for (int i = 0; i < _nuevoAlto; i++) {
             for (int j = 0; j < _nuevoAncho; j++) {
@@ -50,7 +50,7 @@ public class Ficha {
     public void RotarIzquierda(){
         int _nuevoAlto = ancho;
         int _nuevoAncho = alto;
-        Boolean[][] _nuevaForma = new Boolean[_nuevoAlto][_nuevoAncho];
+        boolean[][] _nuevaForma = new boolean[_nuevoAlto][_nuevoAncho];
 
         for (int i = 0; i < _nuevoAlto; i++) {
             for (int j = 0; j < _nuevoAncho; j++) {
