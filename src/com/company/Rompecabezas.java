@@ -1,16 +1,13 @@
 package com.company;
-import com.company.Ficha;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+import TDA.ConjuntoTDA;
 
 public class Rompecabezas {
     int filas;
     int columnas;
+    int cantidadFichas;
 
     Tablero tablero;
-    Ficha[] fichas;
+    ConjuntoTDA fichasDisponibles = new Implementaciones.Conjunto<Ficha>();
 
     public Rompecabezas(String data) {
         parseData(data);
@@ -25,14 +22,23 @@ public class Rompecabezas {
         filas = Integer.parseInt(values[0]);
         columnas = Integer.parseInt(values[1]);
         tablero = new Tablero(filas, columnas);
-
-        fichas = new Ficha[Integer.parseInt(values[2])];
+        cantidadFichas = Integer.parseInt(values[2]);
 
         _data = _data.substring(parts[0].length() + 1);
         String[] FichasStr = _data.split(" ");
 
+        fichasDisponibles.inicializarConjunto();
+
         for (int i = 0; i < FichasStr.length; i++) {
-            fichas[i] = new Ficha(FichasStr[i]);
+            fichasDisponibles.agregar(new Ficha(FichasStr[i]));
         }
+    }
+
+    public void Resolver(){
+        while (tablero.AgregarFicha( (Ficha) fichasDisponibles.elegir(), 0, 0)) {
+            fichasDisponibles.sacar(fichasDisponibles.elegir());
+        }
+
+        System.out.println();
     }
 }

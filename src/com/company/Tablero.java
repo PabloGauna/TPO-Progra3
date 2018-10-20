@@ -17,6 +17,7 @@ public class Tablero {
 
         celdas = new byte[alto][ancho];
         fichasAgregadas = new Implementaciones.Conjunto<Ficha>();
+        fichasAgregadas.inicializarConjunto();
     }
 
     // Devuelve true si se pudo agregar la ficha, y false si no se pudo agregar
