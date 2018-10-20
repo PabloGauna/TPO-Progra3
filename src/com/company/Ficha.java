@@ -28,4 +28,36 @@ public class Ficha {
             }
         }
     }
+
+    public void RotarDerecha(){
+        int _nuevoAlto = ancho;
+        int _nuevoAncho = alto;
+        Boolean[][] _nuevaForma = new Boolean[_nuevoAlto][_nuevoAncho];
+
+        for (int i = 0; i < _nuevoAlto; i++) {
+            for (int j = 0; j < _nuevoAncho; j++) {
+                _nuevaForma[i][j] = forma[alto - j - 1][i];
+            }
+        }
+
+        alto = _nuevoAlto;
+        ancho = _nuevoAncho;
+        forma = _nuevaForma;
+    }
+
+    public void RotarIzquierda(){
+        int _nuevoAlto = ancho;
+        int _nuevoAncho = alto;
+        Boolean[][] _nuevaForma = new Boolean[_nuevoAlto][_nuevoAncho];
+
+        for (int i = 0; i < _nuevoAlto; i++) {
+            for (int j = 0; j < _nuevoAncho; j++) {
+                _nuevaForma[i][j] = forma[j][ancho - i - 1];
+            }
+        }
+
+        alto = _nuevoAlto;
+        ancho = _nuevoAncho;
+        forma = _nuevaForma;
+    }
 }
