@@ -1,15 +1,20 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tablero {
     int alto;
     int ancho;
-    int[][] celdas;
+    byte[][] celdas;
+    List<Ficha> fichasAgregadas;
 
     public Tablero(int alto, int ancho){
         this.alto = alto;
         this.ancho = ancho;
 
-        celdas = new int[alto][ancho];
+        celdas = new byte[alto][ancho];
+        fichasAgregadas = new ArrayList<Ficha>();
     }
 
     // Devuelve true si se pudo agregar la ficha, y false si no se pudo agregar
@@ -20,7 +25,7 @@ public class Tablero {
             return false;
 
         Boolean canAddFicha = true;
-        int[][] _nuevasCeldas = celdas.clone();
+        byte[][] _nuevasCeldas = celdas.clone();
 
         int i = 0, j = 0;
         while (canAddFicha && i < ficha.alto) {
@@ -32,8 +37,10 @@ public class Tablero {
             j %= ficha.ancho;
         }
 
-        if (canAddFicha)
+        if (canAddFicha) {
+            fichasAgregadas.add(ficha);
             celdas = _nuevasCeldas;
+        }
 
         return canAddFicha;
     }

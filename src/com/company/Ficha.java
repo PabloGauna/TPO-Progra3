@@ -4,6 +4,7 @@ public class Ficha {
     public int alto;
     public int ancho;
     public Boolean forma[][];
+    byte rotacion;
 
     public Ficha(String data) {
         parseData(data);
@@ -43,6 +44,7 @@ public class Ficha {
         alto = _nuevoAlto;
         ancho = _nuevoAncho;
         forma = _nuevaForma;
+        rotacion++;
     }
 
     public void RotarIzquierda(){
@@ -59,5 +61,6 @@ public class Ficha {
         alto = _nuevoAlto;
         ancho = _nuevoAncho;
         forma = _nuevaForma;
+        rotacion--;
     }
 }
