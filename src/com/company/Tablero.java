@@ -2,19 +2,21 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.List;
+import TDA.ConjuntoTDA;
 
 public class Tablero {
     int alto;
     int ancho;
     byte[][] celdas;
-    List<Ficha> fichasAgregadas;
+
+    ConjuntoTDA<Ficha> fichasAgregadas;
 
     public Tablero(int alto, int ancho){
         this.alto = alto;
         this.ancho = ancho;
 
         celdas = new byte[alto][ancho];
-        fichasAgregadas = new ArrayList<Ficha>();
+        fichasAgregadas = new Implementaciones.Conjunto<Ficha>();
     }
 
     // Devuelve true si se pudo agregar la ficha, y false si no se pudo agregar
@@ -38,7 +40,7 @@ public class Tablero {
         }
 
         if (canAddFicha) {
-            fichasAgregadas.add(ficha);
+            fichasAgregadas.agregar(ficha);
             celdas = _nuevasCeldas;
         }
 
