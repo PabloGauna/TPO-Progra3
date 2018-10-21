@@ -1,23 +1,32 @@
 package com.company;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import TDA.ConjuntoTDA;
 
-public class Tablero {
+public class Tablero implements Serializable {
     int alto;
     int ancho;
     boolean[][] celdas;
-
-    ConjuntoTDA<Ficha> fichasAgregadas;
 
     public Tablero(int alto, int ancho){
         this.alto = alto;
         this.ancho = ancho;
 
         celdas = new boolean[alto][ancho];
-        fichasAgregadas = new Implementaciones.Conjunto<Ficha>();
-        fichasAgregadas.inicializarConjunto();
+    }
+
+    public Tablero ObtenerCopia() {
+        Tablero copia = new Tablero(this.alto, this.ancho);
+
+        for (int i=0; i < this.alto; i++){
+            for (int j=0; j < this.ancho; j++) {
+                copia.celdas[i][j] = this.celdas[i][j];
+            }
+        }
+
+        return copia;
     }
 
     public boolean SePuedeAgregar(Ficha ficha, int posicionAlto, int posicionAncho){

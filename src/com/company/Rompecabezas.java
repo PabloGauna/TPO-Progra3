@@ -50,7 +50,5 @@ public class Rompecabezas {
             }
 
         }
-
-        System.out.println();
     }
 }
