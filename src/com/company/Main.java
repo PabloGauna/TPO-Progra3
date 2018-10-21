@@ -7,6 +7,6 @@ public class Main {
         String data = Utils.ReadFile("data.txt");
 
         Rompecabezas r = new Rompecabezas(data);
-        r.Resolver();
+        r.Resolver(0, 0);
     }
 }

@@ -34,10 +34,21 @@ public class Rompecabezas {
         }
     }
 
-    public void Resolver(){
-        while (tablero.SePuedeAgregar( (Ficha) fichasDisponibles.elegir(), 0, 0)) {
-            tablero.AgregarFicha((Ficha) fichasDisponibles.elegir(), 0, 0);
-            fichasDisponibles.sacar(fichasDisponibles.elegir());
+    public void Resolver(int posicionAlto, int posicionAncho) {
+        while (posicionAlto < tablero.alto && posicionAncho < tablero.ancho) {
+            Ficha fichaActual = (Ficha) fichasDisponibles.elegir();
+
+            if (tablero.SePuedeAgregar(fichaActual, posicionAlto, posicionAncho)) {
+                tablero.AgregarFicha(fichaActual, posicionAlto, posicionAncho);
+                fichasDisponibles.sacar(fichaActual);
+                Resolver(0, 0);
+            }
+            else {
+                posicionAncho++;
+                posicionAlto = (posicionAlto * tablero.ancho + posicionAncho) / tablero.ancho;
+                posicionAncho %= tablero.ancho;
+            }
+
         }
 
         System.out.println();
