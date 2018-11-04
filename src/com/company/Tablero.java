@@ -48,6 +48,18 @@ public class Tablero implements Serializable {
         return canAddFicha;
     }
 
+    public boolean EstaCompleto(){
+        boolean completo = true;
+
+        for (int i=0 ; i < this.alto; i++){
+            for (int j=0; j < this.ancho; j++){
+                completo &= celdas[i][j];
+            }
+        }
+
+        return completo;
+    }
+
     public void AgregarFicha(Ficha ficha, int posicionAlto, int posicionAncho){
         for (int i=0 ; i < ficha.alto; i++){
             for (int j=0; j < ficha.ancho; j++){
