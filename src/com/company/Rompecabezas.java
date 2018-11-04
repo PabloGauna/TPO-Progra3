@@ -39,8 +39,10 @@ public class Rompecabezas {
     }
 
     public boolean Resolver(Tablero tablero, int posicionAlto, int posicionAncho, int indiceFicha) {
-        if (tablero.EstaCompleto())
+        if (tablero.EstaCompleto()) {
+            System.out.println("Tablero Completo!");
             return true;
+        }
 
         try {
             while (posicionAlto < tablero.alto && posicionAncho < tablero.ancho) {
