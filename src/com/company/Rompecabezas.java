@@ -1,5 +1,5 @@
 package com.company;
-import TDA.ConjuntoTDA;
+import TDA.VectorTDA;
 
 public class Rompecabezas {
     int filas;
@@ -7,7 +7,7 @@ public class Rompecabezas {
     int cantidadFichas;
 
     Tablero tablero;
-    ConjuntoTDA fichasDisponibles = new Implementaciones.Conjunto<Ficha>();
+    VectorTDA<Ficha> fichasDisponibles = new Implementaciones.Vector<Ficha>();
 
     public Rompecabezas(String data) {
         parseData(data);
@@ -27,27 +27,33 @@ public class Rompecabezas {
         _data = _data.substring(parts[0].length() + 1);
         String[] FichasStr = _data.split(" ");
 
-        fichasDisponibles.inicializarConjunto();
+        fichasDisponibles.inicializarVector(FichasStr.length);
 
-        for (int i = 0; i < FichasStr.length; i++) {
-            fichasDisponibles.agregar(new Ficha(FichasStr[i]));
+        try {
+            for (int i = 0; i < FichasStr.length; i++) {
+                fichasDisponibles.agregarElemento(i, new Ficha(FichasStr[i]));
+            }
+        }catch (Exception e){
+
         }
     }
 
-    public void Resolver(int posicionAlto, int posicionAncho) {
-        while (posicionAlto < tablero.alto && posicionAncho < tablero.ancho) {
-            Ficha fichaActual = (Ficha) fichasDisponibles.elegir();
+    public void Resolver(int posicionAlto, int posicionAncho, int indiceFicha) {
+        try {
+            while (posicionAlto < tablero.alto && posicionAncho < tablero.ancho) {
+                Ficha fichaActual = (Ficha) fichasDisponibles.recuperarElemento(indiceFicha);
 
-            if (tablero.SePuedeAgregar(fichaActual, posicionAlto, posicionAncho)) {
-                tablero.AgregarFicha(fichaActual, posicionAlto, posicionAncho);
-                fichasDisponibles.sacar(fichaActual);
-                Resolver(0, 0);
+                if (tablero.SePuedeAgregar(fichaActual, posicionAlto, posicionAncho)) {
+                    tablero.AgregarFicha(fichaActual, posicionAlto, posicionAncho);
+                    Resolver(0, 0, indiceFicha + 1);
+                } else {
+                    posicionAncho++;
+                    posicionAlto = (posicionAlto * tablero.ancho + posicionAncho) / tablero.ancho;
+                    posicionAncho %= tablero.ancho;
+                }
+
             }
-            else {
-                posicionAncho++;
-                posicionAlto = (posicionAlto * tablero.ancho + posicionAncho) / tablero.ancho;
-                posicionAncho %= tablero.ancho;
-            }
+        } catch (Exception e) {
 
         }
     }
