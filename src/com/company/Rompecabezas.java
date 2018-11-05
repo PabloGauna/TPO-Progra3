@@ -34,7 +34,7 @@ public class Rompecabezas {
                 fichasDisponibles.agregarElemento(i, new Ficha(FichasStr[i]));
             }
         }catch (Exception e){
-
+            System.out.println(e.getMessage());
         }
     }
 
@@ -71,7 +71,7 @@ public class Rompecabezas {
                 }
             }
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
 
         return resuelto;
