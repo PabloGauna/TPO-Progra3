@@ -7,6 +7,7 @@ public class Main {
         String data = Utils.ReadFile("data.txt");
 
         Rompecabezas r = new Rompecabezas(data);
+
         r.Resolver(r.tablero, 0, 0, 0);
     }
 }

@@ -39,22 +39,25 @@ public class Rompecabezas {
     }
 
     public boolean Resolver(Tablero tablero, int posicionAlto, int posicionAncho, int indiceFicha) {
+        boolean resuelto = false;
+
         if (tablero.EstaCompleto()) {
             System.out.println("Tablero Completo!");
             return true;
         }
 
         try {
-            while (posicionAlto < tablero.alto && posicionAncho < tablero.ancho) {
+            while (!resuelto && posicionAlto < tablero.alto && posicionAncho < tablero.ancho) {
                 System.out.println("Ficha: " + indiceFicha + " alto: " + posicionAlto + " ancho: " + posicionAncho);
-                Ficha fichaActual = (Ficha) fichasDisponibles.recuperarElemento(indiceFicha);
+                Ficha fichaActual = fichasDisponibles.recuperarElemento(indiceFicha);
 
                 if (tablero.SePuedeAgregar(fichaActual, posicionAlto, posicionAncho)) {
                     Tablero nuevoTablero = tablero.ObtenerCopia();
 
                     nuevoTablero.AgregarFicha(fichaActual, posicionAlto, posicionAncho);
+
                     if (Resolver(nuevoTablero,0, 0, indiceFicha + 1)) {
-                        return true;
+                        resuelto = true;
                     }
                     else {
                         posicionAncho++;
@@ -71,6 +74,6 @@ public class Rompecabezas {
 
         }
 
-        return false;
+        return resuelto;
     }
 }
