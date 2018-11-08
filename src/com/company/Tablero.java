@@ -64,7 +64,7 @@ public class Tablero implements Serializable {
         for (int i=0 ; i < ficha.alto; i++){
             for (int j=0; j < ficha.ancho; j++){
                 if (ficha.forma[i][j]) {
-                    celdas[posicionAlto + i][posicionAncho + j] = 1;
+                    celdas[posicionAlto + i][posicionAncho + j] = ficha.id;
                 }
             }
         }

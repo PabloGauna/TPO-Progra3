@@ -31,7 +31,7 @@ public class Rompecabezas {
 
         try {
             for (int i = 0; i < FichasStr.length; i++) {
-                fichasDisponibles.agregarElemento(i, new Ficha(FichasStr[i], i));
+                fichasDisponibles.agregarElemento(i, new Ficha(FichasStr[i], i + 1));
             }
         }catch (Exception e){
             System.out.println(e.getMessage());
