@@ -3,3 +3,5 @@ Contador de rotaciones
 Poda cuando supera las rotaciones
 
 Ordenar las fichas por volumen
+
+Fichas simetricas que no es necesario rotar
