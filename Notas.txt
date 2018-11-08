@@ -1,0 +1,7 @@
+Metodo SacarFicha
+
+Fichas con numero de ficha
+
+Contador de rotaciones
+
+Rotar ficha cuando no hay solucion sin rotar
