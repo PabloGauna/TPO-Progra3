@@ -16,18 +16,6 @@ public class Tablero implements Serializable {
         celdas = new int[alto][ancho];
     }
 
-    public Tablero ObtenerCopia() {
-        Tablero copia = new Tablero(this.alto, this.ancho);
-
-        for (int i=0; i < this.alto; i++){
-            for (int j=0; j < this.ancho; j++) {
-                copia.celdas[i][j] = this.celdas[i][j];
-            }
-        }
-
-        return copia;
-    }
-
     public boolean SePuedeAgregar(Ficha ficha, int posicionAlto, int posicionAncho){
         if (posicionAlto + ficha.alto > this.alto)
             return false;
@@ -65,6 +53,16 @@ public class Tablero implements Serializable {
             for (int j=0; j < ficha.ancho; j++){
                 if (ficha.forma[i][j]) {
                     celdas[posicionAlto + i][posicionAncho + j] = ficha.id;
+                }
+            }
+        }
+    }
+
+    public void SacarFicha(Ficha ficha, int posicionAlto, int posicionAncho){
+        for (int i=0 ; i < ficha.alto; i++){
+            for (int j=0; j < ficha.ancho; j++){
+                if (ficha.forma[i][j]) {
+                    celdas[posicionAlto + i][posicionAncho + j] = 0;
                 }
             }
         }

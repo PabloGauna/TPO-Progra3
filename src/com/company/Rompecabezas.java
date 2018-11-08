@@ -52,14 +52,14 @@ public class Rompecabezas {
                 Ficha fichaActual = fichasDisponibles.recuperarElemento(indiceFicha);
 
                 if (tablero.SePuedeAgregar(fichaActual, posicionAlto, posicionAncho)) {
-                    Tablero nuevoTablero = tablero.ObtenerCopia();
+                    tablero.AgregarFicha(fichaActual, posicionAlto, posicionAncho);
 
-                    nuevoTablero.AgregarFicha(fichaActual, posicionAlto, posicionAncho);
-
-                    if (Resolver(nuevoTablero,0, 0, indiceFicha + 1)) {
+                    if (Resolver(tablero,0, 0, indiceFicha + 1)) {
                         resuelto = true;
                     }
                     else {
+                        tablero.SacarFicha(fichaActual, posicionAlto, posicionAncho);
+
                         posicionAncho++;
                         posicionAlto = (posicionAlto * tablero.ancho + posicionAncho) / tablero.ancho;
                         posicionAncho %= tablero.ancho;
