@@ -47,9 +47,10 @@ public class Rompecabezas {
         }
 
         try {
+            Ficha fichaActual = fichasDisponibles.recuperarElemento(indiceFicha);
+
             while (!resuelto && posicionAlto < tablero.alto && posicionAncho < tablero.ancho) {
-                System.out.println("Ficha: " + indiceFicha + " alto: " + posicionAlto + " ancho: " + posicionAncho);
-                Ficha fichaActual = fichasDisponibles.recuperarElemento(indiceFicha);
+                System.out.println("Ficha: " + indiceFicha + " alto: " + posicionAlto + " ancho: " + posicionAncho + " rotacion: " + fichaActual.rotacion);
 
                 if (tablero.SePuedeAgregar(fichaActual, posicionAlto, posicionAncho)) {
                     tablero.AgregarFicha(fichaActual, posicionAlto, posicionAncho);
