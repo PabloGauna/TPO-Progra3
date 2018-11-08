@@ -5,9 +5,11 @@ public class Ficha {
     public int ancho;
     public boolean forma[][];
     byte rotacion;
+    int id;
 
-    public Ficha(String data) {
+    public Ficha(String data, int id) {
         parseData(data);
+        this.id = id;
     }
 
     public void parseData(String data){
