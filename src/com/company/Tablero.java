@@ -7,13 +7,13 @@ import java.util.List;
 public class Tablero implements Serializable {
     int alto;
     int ancho;
-    boolean[][] celdas;
+    int[][] celdas;
 
     public Tablero(int alto, int ancho){
         this.alto = alto;
         this.ancho = ancho;
 
-        celdas = new boolean[alto][ancho];
+        celdas = new int[alto][ancho];
     }
 
     public Tablero ObtenerCopia() {
@@ -38,7 +38,7 @@ public class Tablero implements Serializable {
 
         int i = 0, j = 0;
         while (canAddFicha && i < ficha.alto) {
-            canAddFicha = !( celdas[posicionAlto + i][posicionAncho + j] && ficha.forma[i][j] );
+            canAddFicha = !( (celdas[posicionAlto + i][posicionAncho + j] > 0) && ficha.forma[i][j] );
 
             j++;
             i = (i * ficha.ancho + j) / ficha.ancho;
@@ -53,7 +53,7 @@ public class Tablero implements Serializable {
 
         for (int i=0 ; i < this.alto; i++){
             for (int j=0; j < this.ancho; j++){
-                completo &= celdas[i][j];
+                completo &= celdas[i][j] > 0;
             }
         }
 
@@ -63,7 +63,9 @@ public class Tablero implements Serializable {
     public void AgregarFicha(Ficha ficha, int posicionAlto, int posicionAncho){
         for (int i=0 ; i < ficha.alto; i++){
             for (int j=0; j < ficha.ancho; j++){
-                celdas[posicionAlto + i][posicionAncho + j] |= ficha.forma[i][j];
+                if (ficha.forma[i][j]) {
+                    celdas[posicionAlto + i][posicionAncho + j] = 1;
+                }
             }
         }
     }
